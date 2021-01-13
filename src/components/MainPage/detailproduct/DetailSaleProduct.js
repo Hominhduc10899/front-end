@@ -1,25 +1,25 @@
 import React, {useState} from 'react';
+import SaleDataLoader from '../products/saledata'
 import {Link} from 'react-router-dom'
-import DataLoader from '../products/data'
 
-function DetailProduct (props) {
+function DetailNewProduct (props) {
     const [detailProduct, setDetailProduct] = useState([])
     console.log(props.match.params.id);
-    const products = DataLoader()
-    const product = products.find(x=> x._id === props.match.params.id);
+    const saleproduct = SaleDataLoader();
+    const saleproducts = saleproduct.find(x=> x._id === props.match.params.id);
     return (
         <>
             <div className="detail">
-                <img src={product.image} alt="product" ></img>
+                <img src={saleproducts.image} alt="product" ></img>
                 <div className="box-detail">
                     <div className="row">
-                        <h2>{product.name}</h2>
-                        <h6>{product._id}</h6>
+                        <h2>{saleproducts.name}</h2>
+                        <h6>{saleproducts._id}</h6>
                     </div>
-                    <p>Current price: ${product.currentPrice}</p>
-                    <p>Lowest price: ${product.low}</p>
-                    <p>{product.description}</p>
-                    <p>Category: {product.category}</p>
+                    <p>Current price: ${saleproducts.currentPrice}</p>
+                    <p>Lowest price: ${saleproducts.low}</p>
+                    <p>{saleproducts.description}</p>
+                    <p>Category: {saleproducts.category}</p>
                     <div className="row_btn">
                         <Link id="btn_direct" to="/" className="cart">
                             Direct Link
@@ -33,8 +33,8 @@ function DetailProduct (props) {
                 <h2>Related products</h2>
                 <div className="products">
                     {
-                        products.map(product => {
-                            return product.name
+                        saleproduct.map(product => {
+                            return saleproducts.name
                         })
                     }
                 </div>
@@ -44,4 +44,4 @@ function DetailProduct (props) {
         
 }
 
-export default DetailProduct;
+export default DetailNewProduct;

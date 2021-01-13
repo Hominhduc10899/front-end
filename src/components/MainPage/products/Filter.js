@@ -1,7 +1,10 @@
 import React from 'react'
-import data from '../products/data'
+import DataLoader from './data'
+import NewDataLoader from './newdata'
+import SaleDataLoader from './saledata'
 
 export default function Filter() {
+    const products = DataLoader()
     return (
         <div className="filter_menu">
             <div className="row">
@@ -9,9 +12,9 @@ export default function Filter() {
                 <select name="category" >
                     <option>All Products</option>
                     {
-                        data.products.map(product => (
-                            <option value={product.category}>
-                                {product.name}
+                        products.map(product => (
+                            <option>
+                                {product.category}
                             </option>
                         ))
                     }

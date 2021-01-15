@@ -7,8 +7,8 @@ import SaleDataLoader from './saledata'
 
 function Product (props) {
     const products = DataLoader();
-    const newproducts = NewDataLoader();
-    const saleproducts = SaleDataLoader();
+    // const newproducts = NewDataLoader();
+    // const saleproducts = SaleDataLoader();
     return (
         <>
         <Filter></Filter>
@@ -17,8 +17,8 @@ function Product (props) {
         {
             products.map(product =>
                 <div className="product_card">
-                    <Link to={'/product/' + product._id}>
-                    <img src={product.image}></img>
+                    <Link to={'/product/' + product.id}>
+                    <img src={"https://cf.shopee.vn/file/" + product.productAvatar} alt={"Image unavailable"}></img>
                     </Link>
                     <div class="product_box">
                         <h2 title={product.name}>{product.name}</h2>
@@ -30,7 +30,7 @@ function Product (props) {
                         <Link id="btn_direct" to="/">
                             Link
                         </Link>
-                        <Link id="btn_view" to={'/product/' + product._id}>
+                        <Link id="btn_view" to={'/product/' + product.id} product_pass={product}>
                             View
                         </Link>
                     </div>
@@ -39,12 +39,12 @@ function Product (props) {
         }
         </div>
 
-        <h1>New Products</h1>
+        {/* <h1>New Products</h1>
         <div className="products">
         {
             newproducts.map(newproduct =>
                 <div className="product_card">
-                    <Link to={'/newproduct/' + newproduct._id}>
+                    <Link to={'/newproduct/' + newproduct.id}>
                     <img src={newproduct.image}></img>
                     </Link>
                     <div class="product_box">
@@ -57,7 +57,7 @@ function Product (props) {
                         <Link id="btn_direct" to="/">
                             Link
                         </Link>
-                        <Link id="btn_view" to={'/product/' + newproduct._id}>
+                        <Link id="btn_view" to={'/product/' + newproduct.id}>
                             View
                         </Link>
                     </div>
@@ -71,7 +71,7 @@ function Product (props) {
         {
             saleproducts.map(saleproduct =>
                 <div className="product_card">
-                    <Link to={'/product/' + saleproduct._id}>
+                    <Link to={'/product/' + saleproduct.id}>
                     <img src={saleproduct.image}></img>
                     </Link>
                     <div class="product_box">
@@ -84,14 +84,14 @@ function Product (props) {
                         <Link id="btn_direct" to="/">
                             Link
                         </Link>
-                        <Link id="btn_view" to={'/product/' + saleproduct._id}>
+                        <Link id="btn_view" to={'/product/' + saleproduct.id}>
                             View
                         </Link>
                     </div>
                 </div>
             )
         }
-        </div>
+        </div> */}
         </>
     )  
 }

@@ -1,38 +1,49 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import DataLoader from './data'
 import NewDataLoader from './newdata'
 import SaleDataLoader from './saledata'
 
 export default function Filter() {
-    const products = DataLoader()
+    const [sort, setSort] = useState('relevance');
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const form_submit = (e) => {
+        alert(sort + ", " + searchTerm);
+        e.preventDefault()
+    }
+
     return (
-        <div className="filter_menu">
+        <form className="filter_menu" onSubmit={form_submit}>
             <div className="row">
                 <span>Filters: </span>
                 <select name="category" >
                     <option>All Products</option>
-                    {
+                    {/* {
                         products.map(product => (
                             <option>
                                 {product.category}
                             </option>
                         ))
-                    }
+                    } */}
                 </select>
             </div>
 
-            <input type="text" placeholder="Enter your search!"/>
+            <input type="text" placeholder="Enter your search!" value={searchTerm} onChange={(e) => {
+                setSearchTerm(e.target.value);
+            }} />
 
             <div className="row sort">
                 <span>Sort By: </span>
-                <select>
-                    <option value=''>Newest</option>
-                    <option value='sort=oldest'>Oldest</option>
-                    <option value='sort=-sold'>Best sales</option>
-                    <option value='sort=-price'>Price: Hight-Low</option>
-                    <option value='sort=price'>Price: Low-Hight</option>
+                <select value={sort} onChange={(e) => { setSort(e.target.value) }}>
+                    <option value='relevance'>Relevance</option>
+                    <option value='rating'>Rating</option>
+                    <option value='currentPrice'>Price</option>
+                    {/* <option value='sort=-price'>Price: Hight-Low</option>
+                    <option value='sort=price'>Price: Low-Hight</option> */}
                 </select>
             </div>
-        </div>
+
+            <button name="Search"/>
+        </form>
     )
 }

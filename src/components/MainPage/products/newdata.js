@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 function NewDataLoader() {
     const newproduct = [
         {
-            _id:'1',
+            id:'1',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -43,7 +43,7 @@ function NewDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'2',
+            id:'2',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -83,7 +83,7 @@ function NewDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'3',
+            id:'3',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -123,7 +123,7 @@ function NewDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'4',
+            id:'4',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -163,7 +163,7 @@ function NewDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'5',
+            id:'5',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -203,7 +203,7 @@ function NewDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'6',
+            id:'6',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -243,7 +243,7 @@ function NewDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'7',
+            id:'7',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [

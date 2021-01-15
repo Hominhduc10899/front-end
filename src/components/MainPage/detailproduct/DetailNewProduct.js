@@ -6,7 +6,7 @@ function DetailNewProduct (props) {
     const [detailProduct, setDetailProduct] = useState([])
     console.log(props.match.params.id);
     const newproduct = NewDataLoader();
-    const newproducts = newproduct.find(x=> x._id === props.match.params.id);
+    const newproducts = newproduct.find(x=> x.id === props.match.params.id);
     return (
         <>
             <div className="detail">
@@ -14,7 +14,7 @@ function DetailNewProduct (props) {
                 <div className="box-detail">
                     <div className="row">
                         <h2>{newproducts.name}</h2>
-                        <h6>{newproducts._id}</h6>
+                        <h6>{newproducts.id}</h6>
                     </div>
                     <p>Current price: ${newproducts.currentPrice}</p>
                     <p>Lowest price: ${newproducts.currentPrice}</p>

@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 function SaleDataLoader() {
     const saleproduct = [
         {
-            _id:'1',
+            id:'1',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -43,7 +43,7 @@ function SaleDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'2',
+            id:'2',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -83,7 +83,7 @@ function SaleDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'3',
+            id:'3',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -123,7 +123,7 @@ function SaleDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'4',
+            id:'4',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [
@@ -163,7 +163,7 @@ function SaleDataLoader() {
             type: "RX Vega 64"
         },
         {
-            _id:'5',
+            id:'5',
             name: "CARD MÀN HÌNH Radeon ™ RX VEGA 64 8G - Gigabyte",
             image: '/images/ip1.png',
             histories: [

@@ -1,7 +1,7 @@
-import React from 'react';
-import {BrowserRouter as Router} from 'react-router-dom';
-import Header from './components/Header/Header'
-import MainPage from './components/MainPage/Pages'
+import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/Header/Header";
+import MainPage from "./components/MainPage/Pages";
 
 function App() {
   return (
@@ -15,4 +15,3 @@ function App() {
 }
 
 export default App;
-

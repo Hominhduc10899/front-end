@@ -330,3 +330,12 @@ header ul li:hover{
     margin: 20px 0;
   }
 }
+.slick-arrow::before {
+  color: red
+}
+.Collapsible {
+  margin-bottom: 20px;
+}
+.Collapsible__trigger{
+  font-weight: bold;
+}

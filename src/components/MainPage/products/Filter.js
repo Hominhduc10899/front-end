@@ -7,18 +7,18 @@ export default function Filter(props) {
     const [sort, setSort] = useState('relevance');
     const [searchTerm, setSearchTerm] = useState('');
 
-    // const form_submit = (e) => {
-    //     e.preventDefault();
+    const form_submit = (e) => {
+        // e.preventDefault();
 
-    //     fetch("http://localhost:9000/search?keywords=" + searchTerm + "&by=" + sort)
-    //     .then(res => res.json())
-    //     .then(json => {
-    //         console.log(json);
-    //         return json;
-    //     })
-    //     .then(json => json.content)
-    //     .then(content => props.onSubmit(content))
-    // }
+        // fetch("http://localhost:9000/search?keywords=" + searchTerm + "&by=" + sort)
+        // .then(res => res.json())
+        // .then(json => {
+        //     console.log(json);
+        //     return json;
+        // })
+        // .then(json => json.content)
+        // .then(content => props.onSubmit(content))
+    }
 
     return (
         <form className="filter_menu" onSubmit={form_submit}>
@@ -40,8 +40,6 @@ export default function Filter(props) {
                 setSearchTerm(e.target.value);
             }} />
 
-            <button type="submit" value="Search" className="btn_search">Search</button>
-
             <div className="row sort">
                 <span>Sort By: </span>
                 <select value={sort} onChange={(e) => { setSort(e.target.value) }}>
@@ -53,7 +51,7 @@ export default function Filter(props) {
                 </select>
             </div>
 
-            <button name="Search"/>
+            <button type="submit" value="Search" className="btn_search">Search</button>
         </form>
     )
 }

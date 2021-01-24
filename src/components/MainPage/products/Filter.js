@@ -40,6 +40,8 @@ export default function Filter(props) {
                 setSearchTerm(e.target.value);
             }} />
 
+            <button type="submit" value="Search" className="btn_search">Search</button>
+
             <div className="row sort">
                 <span>Sort By: </span>
                 <select value={sort} onChange={(e) => { setSort(e.target.value) }}>

@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  load-balance:
+    build: ./load-balancer
+    container_name: load-balance
+    restart: always
+    expose:
+      - 80
+    ports:
+      - 80:80
+    depends_on:
+      - react1
+      - react2
+      
+  react1:
+    build: .
+    container_name: react1
+    restart: always
+    expose:
+      - 80
+    ports:
+      - 81:80
+  react2:
+    build: .
+    container_name: react2
+    restart: always
+    expose:
+      - 80
+    ports:
+      - 82:80

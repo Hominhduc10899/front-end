@@ -339,3 +339,15 @@ header ul li:hover{
 .Collapsible__trigger{
   font-weight: bold;
 }
+
+.btn_search{
+  background-color: #008CBA;
+  border: none;
+  color:white;
+  padding: 10px 21px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-right: 7px;
+}

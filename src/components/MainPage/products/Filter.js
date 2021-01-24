@@ -32,7 +32,9 @@ export default function Filter() {
                 setSearchTerm(e.target.value);
             }} />
 
-            <div className="row sort">
+            <button className="btn_search">Search</button>
+           
+            <div className="row">
                 <span>Sort By: </span>
                 <select value={sort} onChange={(e) => { setSort(e.target.value) }}>
                     <option value='relevance'>Relevance</option>

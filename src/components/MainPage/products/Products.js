@@ -8,6 +8,7 @@ import Category from "../../Category/Category";
 import Slider from "react-slick";// Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import Skeleton from 'react-loading-skeleton';
 
 function Product(props) {
   const products = DataLoader();
@@ -51,7 +52,7 @@ function Product(props) {
           ))}
         </Slider>
       </div>
-
+      
       <h1>New Products</h1>
       <div className="">
         <Slider {...settings}>

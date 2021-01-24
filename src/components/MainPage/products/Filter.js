@@ -8,32 +8,21 @@ export default function Filter(props) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const form_submit = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
 
-        // fetch("http://localhost:9000/search?keywords=" + searchTerm + "&by=" + sort)
-        // .then(res => res.json())
-        // .then(json => {
-        //     console.log(json);
-        //     return json;
-        // })
-        // .then(json => json.content)
-        // .then(content => props.onSubmit(content))
+        fetch("http://localhost:9000/search?keywords=" + searchTerm + "&by=" + sort)
+        .then(res => res.json())
+        .then(json => {
+            console.log("Filter:" + json);
+            return json;
+        })
+        .then(content => props.onSubmit(content))
     }
 
     return (
         <form className="filter_menu" onSubmit={form_submit}>
             <div className="row">
-                <span>Filters: </span>
-                <select name="category" >
-                    <option>All Products</option>
-                    {/* {
-                        products.map(product => (
-                            <option>
-                                {product.category}
-                            </option>
-                        ))
-                    } */}
-                </select>
+                
             </div>
 
             <input type="text" placeholder="Enter your search!" value={searchTerm} onChange={(e) => {

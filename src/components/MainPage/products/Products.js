@@ -11,14 +11,10 @@ import Slider from "react-slick";// Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// function Products() {
-//     // const [page, setPage] = useState(0)
-//     // const [products, setProducts] = useState([])
+function Products() {
+    const [page, setPage] = useState(0)
+    const [products, setProducts] = useState([])
 
-//     // useEffect(() => {
-//     //     console.log("http://localhost:9000/product/get/all/page/" + page);
-
-function Product() {
     // const [pagination, setPagination] = useState({
     //     data: new Array(6000).fill().map((value, index) => (({
     //         id: index,
@@ -42,7 +38,7 @@ function Product() {
     //     const offset = selected * pagination.numberPerPage
     //     setPagination({ ...pagination, offset })
     // }
-    
+
 
     useEffect(() => {
         fetch("http://localhost:9000/product/get/all/page/" + page)
@@ -55,14 +51,12 @@ function Product() {
             .then((data) => setProducts(data));
     }, []);
 
-
-
     var settings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 5,
-        slidesToScroll: 1
+        slidesToScroll: 3
     };
 
     return (
@@ -72,27 +66,31 @@ function Product() {
             <h1>Your Products</h1>
             <div className="">
                 <Slider {...settings}>
-                    {products.map((product) => (
-                        <div className="product_card">
-                            <Link to={"/product/" + product.id}>
-                                <img src={"https://cf.shopee.vn/file/" + product.productAvatar} alt={"Image unavailable"}></img>
-                            </Link>
-                            <div class="product_box">
-                                <h2 title={product.name}>{product.name}</h2>
-                                <span>{product.currentPrice} đ</span>
-                                <p>{product.description}</p>
-                            </div>
+                    {products.map((product) => {
+                        console.log(products.length);
 
-                            <div className="row_btn">
-                                <a id="btn_direct" href={product.url}>
-                                    Link
-                                </a>
-                                <Link id="btn_view" to={"/product/" + product.id} product_pass={product}>
-                                    Detail
+                        return (
+                            <div className="product_card" key={product.id}>
+                                <Link to={"/product/" + product.id}>
+                                    <img src={"https://cf.shopee.vn/file/" + product.productAvatar} alt={"Image unavailable"}></img>
                                 </Link>
+                                <div class="product_box">
+                                    <h2 title={product.name}>{product.name}</h2>
+                                    <span>{product.currentPrice} đ</span>
+                                    <p>{product.description}</p>
+                                </div>
+    
+                                <div className="row_btn">
+                                    <a id="btn_direct" href={product.url}>
+                                        Link
+                                    </a>
+                                    <Link id="btn_view" to={"/product/" + product.id} product_pass={product}>
+                                        Detail
+                                    </Link>
+                                </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </Slider>
             </div>
         </>

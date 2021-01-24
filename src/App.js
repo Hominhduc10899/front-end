@@ -9,7 +9,6 @@ function App() {
       <div className="App" style={{position: "relative", minHeight: "100vh"}}>
         <Header/>
         <MainPage />
-        {/* <div style={{marginBottom: "2em"}}></div> */}
         <footer style={{position: "absolute", left: "0", bottom: "0", paddingTop: "2em", paddingBottom: "2em", width: "100%"}}>
           <div style={{textAlign: "center"}}> 
             Copyright &#169; by Hoang Truong

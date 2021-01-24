@@ -47,12 +47,6 @@ function Header() {
           {localStorage.getItem("username") ? (
             <span>
               Welcome, <b> {localStorage.getItem("username")} </b>
-              <span>
-                <a href="" onClick={logout}>
-                  {" "}
-                  Logout{" "}
-                </a>
-              </span>
             </span>
           ) : (
             <Link to="/login">Sign in and register</Link>
@@ -63,11 +57,17 @@ function Header() {
           <img src={Close} alt="Close" width="30" className="menu" />
         </li>
       </ul>
-      <div className="cart-icon">
-        <span>0</span>
-        <Link to="/cart">
-          <img src={Cart} alt="Cart" width="30" />
-        </Link>
+      <div>
+        {localStorage.getItem("username") ? (
+          <span>
+            <a href="" onClick={logout}>
+              {" "}
+                    Logout{" "}
+            </a>
+          </span>
+        ) : (
+            null
+          )}
       </div>
     </header>
   );

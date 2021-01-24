@@ -8,59 +8,6 @@ import Close from "./icons/close.svg";
 import { Link } from "react-router-dom";
 
 function Category() {
-  // const categoryList = [
-  //   {
-  //     name: "Car",
-  //     id: 1,
-  //     image1: { Car },
-  //   },
-  //   {
-  //     name: "Clothes",
-  //     id: 2,
-  //     image: "",
-  //   },
-  //   {
-  //     name: "Tennis",
-  //     id: 3,
-  //     image: "",
-  //   },
-  //   {
-  //     name: "Ball",
-  //     id: 4,
-  //     image: "",
-  //   },
-  //   {
-  //     name: "Laptop",
-  //     id: 5,
-  //     image: "",
-  //   },
-  //   {
-  //     name: "Shoes",
-  //     id: 6,
-  //     image: "",
-  //   },
-  //   {
-  //     name: "Camera",
-  //     id: 7,
-  //     image: "",
-  //   },
-  //   {
-  //     name: "Jean",
-  //     id: 8,
-  //     image: "",
-  //   },
-  //   {
-  //     name: "Relax",
-  //     id: 9,
-  //     image: "",
-  //   },
-  //   {
-  //     name: "House",
-  //     id: 9,
-  //     image: "",
-  //   },
-  // ];
-
   const [categoryList, setCategoryList] = useState([])
   
   useEffect(() => {
@@ -85,7 +32,7 @@ function Category() {
       <div className="products">
         {categoryList.map((category) => (
           <div style={{ height: "100px", width: "100px" }} className="product_card">
-            <Link to={"/sub-category/" + category.id}>
+            <Link to={"/sub-category/" + category.id} onClick={() => window.open("/sub-category/" + category.id, "_self")}>
               <img style={{ width: "50px", height: "50px", "margin-left": "10px" }} src={Car}></img>
             </Link>
 

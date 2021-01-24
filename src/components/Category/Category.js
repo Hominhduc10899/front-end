@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Collapsible from "react-collapsible";
 import Menu from "./icons/menu.svg";
 import Cart from "./icons/cart.svg";
@@ -8,58 +8,76 @@ import Close from "./icons/close.svg";
 import { Link } from "react-router-dom";
 
 function Category() {
-  const categoryList = [
-    {
-      title: "Car",
-      id: 1,
-      image1: { Car },
-    },
-    {
-      title: "Clothes",
-      id: 2,
-      image: "",
-    },
-    {
-      title: "Tennis",
-      id: 3,
-      image: "",
-    },
-    {
-      title: "Ball",
-      id: 4,
-      image: "",
-    },
-    {
-      title: "Laptop",
-      id: 5,
-      image: "",
-    },
-    {
-      title: "Shoes",
-      id: 6,
-      image: "",
-    },
-    {
-      title: "Camera",
-      id: 7,
-      image: "",
-    },
-    {
-      title: "Jean",
-      id: 8,
-      image: "",
-    },
-    {
-      title: "Relax",
-      id: 9,
-      image: "",
-    },
-    {
-      title: "House",
-      id: 9,
-      image: "",
-    },
-  ];
+  // const categoryList = [
+  //   {
+  //     name: "Car",
+  //     id: 1,
+  //     image1: { Car },
+  //   },
+  //   {
+  //     name: "Clothes",
+  //     id: 2,
+  //     image: "",
+  //   },
+  //   {
+  //     name: "Tennis",
+  //     id: 3,
+  //     image: "",
+  //   },
+  //   {
+  //     name: "Ball",
+  //     id: 4,
+  //     image: "",
+  //   },
+  //   {
+  //     name: "Laptop",
+  //     id: 5,
+  //     image: "",
+  //   },
+  //   {
+  //     name: "Shoes",
+  //     id: 6,
+  //     image: "",
+  //   },
+  //   {
+  //     name: "Camera",
+  //     id: 7,
+  //     image: "",
+  //   },
+  //   {
+  //     name: "Jean",
+  //     id: 8,
+  //     image: "",
+  //   },
+  //   {
+  //     name: "Relax",
+  //     id: 9,
+  //     image: "",
+  //   },
+  //   {
+  //     name: "House",
+  //     id: 9,
+  //     image: "",
+  //   },
+  // ];
+
+  const [categoryList, setCategoryList] = useState([])
+  
+  useEffect(() => {
+	  fetch("http://localhost:9000/category/get/all")
+	  .then((res) => res.json())
+	  .then(json => {
+		  console.log(json);
+		  return json;
+	  })
+	  .then(json => {
+		  json.forEach(element => {
+			  element.id = element.shopeeCategoryID;
+		  });
+		  return json;
+	  })
+	  .then(json => setCategoryList(json))
+  }, [])
 
   return (
     <Collapsible trigger="CATEGORY">
@@ -71,8 +89,8 @@ function Category() {
             </Link>
 
             <div class="product_box">
-              <h2 title="" style={{ "font-size": "15px", "text-align": "center", "margin-top": "10px" }}>
-                {category.title}
+              <h2 name="" style={{ "font-size": "15px", "text-align": "center", "margin-top": "10px" }}>
+                {category.name}
               </h2>
             </div>
           </div>

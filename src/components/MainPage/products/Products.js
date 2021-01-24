@@ -23,7 +23,7 @@ function Product(props) {
 
   return (
     <>
-      <Filter></Filter>
+      <Filter products={products}></Filter>
       <Category />
       <h1>Your Products</h1>
       <div className="">

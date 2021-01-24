@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import DataLoader from "../products/data";
 
 function DetailProduct(props) {
-  const [product, setProduct] = useState(undefined);
+  const [product, setProduct] = useState(null);
 
   console.log(props.match.params.id);
 
@@ -13,7 +13,11 @@ function DetailProduct(props) {
       .then((json) => {
         console.log(json);
         setProduct(json);
-      });
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      ;
   }, []);
 
   // setProduct(products.find(x => x.id === props.match.params.id));
@@ -35,12 +39,12 @@ function DetailProduct(props) {
               <p>{product.description}</p>
               <p>Category: {product.category}</p>
               <div className="row_btn">
-                <Link id="btn_direct" to="/" className="cart">
+                <Link id="btn_direct" to={product.url} className="cart">
                   Direct Link
                 </Link>
-                <Link to="/cart" className="cart">
+                {/* <Link to="/cart" className="cart">
                   Add to cart
-                </Link>
+                </Link> */}
               </div>
             </div>
           </div>

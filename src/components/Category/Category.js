@@ -69,7 +69,8 @@ function Category() {
 	  .then(json => {
 		  console.log(json);
 		  return json;
-	  })
+    })
+    .then(json => json.slice(0, 12))
 	  .then(json => {
 		  json.forEach(element => {
 			  element.id = element.shopeeCategoryID;

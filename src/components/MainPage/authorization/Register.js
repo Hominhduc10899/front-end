@@ -12,6 +12,10 @@ function Register() {
     }
 
     const submit = (e) => {
+        // SUPER IMPORTANT LINE, as this will prevent the form to submit first
+        // due to its default behaviour
+        e.preventDefault();
+
         fetch("http://localhost:9000/register", {
             method: "post",
             headers: {
@@ -26,18 +30,18 @@ function Register() {
             console.log(res);
 
             if (res.status === 406) {
-                alert(res.statusText)
-                e.preventDefault();
+                alert("Already existed")
             }
             else {
                 window.open('http://localhost:3000', '_self');
             }
+            
         })
     }
 
     return (
         <div className="login-page">
-            <form onSubmit={(e) => {submit(e);}} target={"_self"}>
+            <form onSubmit={(e) => {submit(e);}}>
                 <h2>Register</h2>
                 <input type="text" name="name" required
                 placeholder="Name" value={user.name} onChange={onChangeInput} />

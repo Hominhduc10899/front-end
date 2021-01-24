@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import ReactPaginate from 'react-paginate';
+import faker from 'faker'
 import { Link } from "react-router-dom";
 import Filter from "./Filter";
 import DataLoader from "./data";
@@ -9,7 +11,30 @@ import Slider from "react-slick";// Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+
 function Product(props) {
+  const [pagination, setPagination] = useState({
+    data: new Array(6000).fill().map((value, index) => (({
+      id: index,
+    }))),
+    offset: 0,
+    numberPerPage: 20,
+    pageCount: 0,
+    currentData: []
+  });
+  useEffect(() => {
+    setPagination((prevState) => ({
+      ...prevState,
+      pageCount: prevState.data.length / prevState.numberPerPage,
+      currentData: prevState.data.slice(pagination.offset, pagination.offset + pagination.numberPerPage)
+    }))
+  }, [pagination.numberPerPage, pagination.offset])
+  const handlePageClick = event => {
+    const selected = event.selected;
+    const offset = selected * pagination.numberPerPage
+    setPagination({ ...pagination, offset })
+  }
+
   const products = DataLoader();
   const newproducts = NewDataLoader();
   const saleproducts = SaleDataLoader();
@@ -28,11 +53,12 @@ function Product(props) {
       <h1>Your Products</h1>
       <div className="">
         <Slider {...settings}>
-          {products.map((product) => (
+          {pagination.currenData && pagination.curentData.products.map((product) => (
             <div className="product_card">
               <Link to={"/product/" + product.id}>
                 <img src={"https://cf.shopee.vn/file/" + product.productAvatar} alt={"Image unavailable"}></img>
               </Link>
+
               <div class="product_box">
                 <h2 title={product.name}>{product.name}</h2>
                 <span>${product.currentPrice}</span>
@@ -49,6 +75,17 @@ function Product(props) {
               </div>
             </div>
           ))}
+          <ReactPaginate
+            previousLabel={'previous'}
+            nextLabel={'next'}
+            breakLabel={'...'}
+            pageCount={pagination.pageCount}
+            marginPagesDisplayed={2}
+            pageRangeDisplayed={5}
+            onPageChange={handlePageClick}
+            containerClassName={'pagination'}
+            activeClassName={'active'}
+          />
         </Slider>
       </div>
 

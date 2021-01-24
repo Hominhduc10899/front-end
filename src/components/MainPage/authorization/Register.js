@@ -33,6 +33,8 @@ function Register() {
                 alert("Already existed")
             }
             else {
+                localStorage.setItem("username", user.email);
+                localStorage.setItem("password", user.password);
                 window.open('http://localhost:3000', '_self');
             }
             
@@ -40,24 +42,27 @@ function Register() {
     }
 
     return (
-        <div className="login-page">
-            <form onSubmit={(e) => {submit(e);}}>
-                <h2>Register</h2>
-                <input type="text" name="name" required
-                placeholder="Name" value={user.name} onChange={onChangeInput} />
+        <div style={{verticalAlign: "middle"}}>
+            <div className="login-page">
+                <form onSubmit={(e) => {submit(e);}}>
+                    <h2>Register</h2>
+                    {/* <input type="text" name="name" required
+                    placeholder="Name" value={user.name} onChange={onChangeInput} /> */}
 
-                <input type="text" name="email" required
-                placeholder="Email" value={user.email} onChange={onChangeInput} />
+                    <input type="text" name="email" required
+                    placeholder="Email" value={user.email} onChange={onChangeInput} />
 
-                <input type="password" name="password" required autoComplete="on"
-                placeholder="Password" value={user.password} onChange={onChangeInput} />
+                    <input type="password" name="password" required
+                    placeholder="Password" value={user.password} onChange={onChangeInput} />
 
-                <div className="row">
-                    <button type="submit">Register</button>
-                    <Link to="/login">Login</Link>
-                </div>
-            </form>
+                    <div className="row">
+                        <button type="submit">Register</button>
+                        <Link to="/login">Login</Link>
+                    </div>
+                </form>
         </div>
+        </div>
+        
     )
 }
 

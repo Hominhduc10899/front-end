@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Filter from "./Filter";
 import DataLoader from "./data";
@@ -9,50 +9,64 @@ import Slider from "react-slick";// Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Product(props) {
-  const products = DataLoader();
-  const newproducts = NewDataLoader();
-  const saleproducts = SaleDataLoader();
-  var settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 5,
-    slidesToScroll: 10
-  };
+function Products() {
+    const [page, setPage] = useState(0)
+    const [products, setProducts] = useState([])
 
-  return (
-    <>
-      <Filter products={products}></Filter>
-      <Category />
-      <h1>Your Products</h1>
-      <div className="">
-        <Slider {...settings}>
-          {products.map((product) => (
-            <div className="product_card">
-              <Link to={"/product/" + product.id}>
-                <img src={"https://cf.shopee.vn/file/" + product.productAvatar} alt={"Image unavailable"}></img>
-              </Link>
-              <div class="product_box">
-                <h2 title={product.name}>{product.name}</h2>
-                <span>${product.currentPrice}</span>
-                <p>{product.description}</p>
-              </div>
+    useEffect(() => {
+        console.log("http://localhost:9000/product/get/all/page/" + page);
 
-              <div className="row_btn">
-                <Link id="btn_direct" to="/">
-                  Link
-              </Link>
-                <Link id="btn_view" to={"/product/" + product.id} product_pass={product}>
-                  View
-              </Link>
-              </div>
+        fetch("http://localhost:9000/product/get/all/page/" + page)
+            .then((response) => response.json())
+            .then(json => {
+                console.log(json);
+                return json;
+            })
+            .then((res) => res.content)
+            .then((data) => setProducts(data));
+    }, []);
+
+
+    var settings = {
+        dots: false,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1
+    };
+
+    return (
+        <>
+            <Filter onSubmit={setProducts}></Filter>
+            <Category />
+            <h1>Your Products</h1>
+            <div className="">
+                <Slider {...settings}>
+                    {products.map((product) => (
+                        <div className="product_card">
+                            <Link to={"/product/" + product.id}>
+                                <img src={"https://cf.shopee.vn/file/" + product.productAvatar} alt={"Image unavailable"}></img>
+                            </Link>
+                            <div class="product_box">
+                                <h2 title={product.name}>{product.name}</h2>
+                                <span>{product.currentPrice} đ</span>
+                                <p>{product.description}</p>
+                            </div>
+
+                            <div className="row_btn">
+                                <a id="btn_direct" href={product.url}>
+                                    Link
+                                </a>
+                                <Link id="btn_view" to={"/product/" + product.id} product_pass={product}>
+                                    Detail
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </Slider>
             </div>
-          ))}
-        </Slider>
-      </div>
 
-      <h1>New Products</h1>
+            {/* <h1>New Products</h1>
       <div className="">
         <Slider {...settings}>
           {newproducts.map((newproduct) => (
@@ -104,9 +118,9 @@ function Product(props) {
             </div>
           ))}
         </Slider>
-      </div>
-    </>
-  );
+      </div> */}
+        </>
+    );
 }
 
-export default Product;
+export default Products;

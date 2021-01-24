@@ -3,14 +3,22 @@ import DataLoader from './data'
 import NewDataLoader from './newdata'
 import SaleDataLoader from './saledata'
 
-export default function Filter() {
+export default function Filter(props) {
     const [sort, setSort] = useState('relevance');
     const [searchTerm, setSearchTerm] = useState('');
 
-    const form_submit = (e) => {
-        alert(sort + ", " + searchTerm);
-        e.preventDefault()
-    }
+    // const form_submit = (e) => {
+    //     e.preventDefault();
+
+    //     fetch("http://localhost:9000/search?keywords=" + searchTerm + "&by=" + sort)
+    //     .then(res => res.json())
+    //     .then(json => {
+    //         console.log(json);
+    //         return json;
+    //     })
+    //     .then(json => json.content)
+    //     .then(content => props.onSubmit(content))
+    // }
 
     return (
         <form className="filter_menu" onSubmit={form_submit}>

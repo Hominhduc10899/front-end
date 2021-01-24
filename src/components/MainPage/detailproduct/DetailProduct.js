@@ -5,7 +5,6 @@ import DataLoader from "../products/data";
 function DetailProduct(props) {
   const [product, setProduct] = useState(null);
 
-  console.log(props.match.params.id);
 
   useEffect(() => {
     fetch("http://localhost:9000/product/get/" + props.match.params.id)
@@ -32,21 +31,24 @@ function DetailProduct(props) {
             <div className="box-detail">
               <div className="row">
                 <h2>{product.name}</h2>
-                <h6>{product.id}</h6>
+                {/* <h6>{product.id}</h6> */}
               </div>
-              <p>Current price: ${product.currentPrice}</p>
-              <p>Lowest price: ${product.low}</p>
-              <p>{product.description}</p>
-              <p>Category: {product.category}</p>
+              <p>Price: {product.currentPrice} đ</p>
+              <p>Category: {product.categories[product.categories.length - 1].name}</p>
               <div className="row_btn">
-                <Link id="btn_direct" to={product.url} className="cart">
+                <a id="btn_direct" href={product.url} className="cart">
                   Direct Link
-                </Link>
+                </a>
                 {/* <Link to="/cart" className="cart">
                   Add to cart
                 </Link> */}
               </div>
             </div>
+          </div>
+
+          <div>
+            <h2>Description</h2>
+            <p>{product.description}</p>
           </div>
 
           <div>

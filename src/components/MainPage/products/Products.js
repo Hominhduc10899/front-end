@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from 'react';
+import ReactPaginate from 'react-paginate';
+import faker from 'faker'
 import { Link } from "react-router-dom";
 import Filter from "./Filter";
 import DataLoader from "./data";
@@ -9,13 +11,40 @@ import Slider from "react-slick";// Import css files
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-function Products() {
-    const [page, setPage] = useState(0)
-    const [products, setProducts] = useState([])
+// function Products() {
+//     // const [page, setPage] = useState(0)
+//     // const [products, setProducts] = useState([])
+
+//     // useEffect(() => {
+//     //     console.log("http://localhost:9000/product/get/all/page/" + page);
+
+function Product() {
+    // const [pagination, setPagination] = useState({
+    //     data: new Array(6000).fill().map((value, index) => (({
+    //         id: index,
+    //     }))),
+    //     offset: 0,
+    //     numberPerPage: 20,
+    //     pageCount: 0,
+    //     currentData: []
+    // });
+
+    // useEffect(() => {
+    //     setPagination((prevState) => ({
+    //         ...prevState,
+    //         pageCount: prevState.data.length / prevState.numberPerPage,
+    //         currentData: prevState.data.slice(pagination.offset, pagination.offset + pagination.numberPerPage)
+    //     }))
+    // }, [pagination.numberPerPage, pagination.offset])
+
+    // const handlePageClick = event => {
+    //     const selected = event.selected;
+    //     const offset = selected * pagination.numberPerPage
+    //     setPagination({ ...pagination, offset })
+    // }
+    
 
     useEffect(() => {
-        console.log("http://localhost:9000/product/get/all/page/" + page);
-
         fetch("http://localhost:9000/product/get/all/page/" + page)
             .then((response) => response.json())
             .then(json => {
@@ -25,6 +54,7 @@ function Products() {
             .then((res) => res.content)
             .then((data) => setProducts(data));
     }, []);
+
 
 
     var settings = {
@@ -65,62 +95,11 @@ function Products() {
                     ))}
                 </Slider>
             </div>
-
-            {/* <h1>New Products</h1>
-      <div className="">
-        <Slider {...settings}>
-          {newproducts.map((newproduct) => (
-            <div className="product_card">
-              <Link to={"/newproduct/" + newproduct.id}>
-                <img src={newproduct.image}></img>
-              </Link>
-              <div class="product_box">
-                <h2 title={newproduct.name}>{newproduct.name}</h2>
-                <span>${newproduct.currentPrice}</span>
-                <p>{newproduct.description}</p>
-              </div>
-
-              <div className="row_btn">
-                <Link id="btn_direct" to="/">
-                  Link
-              </Link>
-                <Link id="btn_view" to={"/product/" + newproduct.id}>
-                  View
-              </Link>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </div>
-
-      <h1>Flash Sale</h1>
-      <div className="">
-        <Slider {...settings}>
-          {saleproducts.map((saleproduct) => (
-            <div className="product_card">
-              <Link to={"/product/" + saleproduct.id}>
-                <img src={saleproduct.image}></img>
-              </Link>
-              <div class="product_box">
-                <h2 title={saleproduct.name}>{saleproduct.name}</h2>
-                <span>${saleproduct.currentPrice}</span>
-                <p>{saleproduct.description}</p>
-              </div>
-
-              <div className="row_btn">
-                <Link id="btn_direct" to="/">
-                  Link
-              </Link>
-                <Link id="btn_view" to={"/product/" + saleproduct.id}>
-                  View
-              </Link>
-              </div>
-            </div>
-          ))}
-        </Slider>
-      </div> */}
         </>
     );
 }
+
+
+
 
 export default Products;

@@ -20,7 +20,7 @@ function MainPage() {
       <Route path="/login" exact component={Login} />
       <Route path="/register" exact component={Register} />
       <Route path="/cart" exact component={Cart} />
-      <Route path="/chart" exact component={NewChart} />
+      <Route path="/chart/:id" exact component={NewChart} />
       <Route path="/sub-category/:id" exact component={SubCategory} />
     </Switch>
   );

@@ -11,18 +11,18 @@ export default function Filter(props) {
         e.preventDefault();
 
         fetch("http://localhost:9000/search?keywords=" + searchTerm + "&by=" + sort)
-        .then(res => res.json())
-        .then(json => {
-            console.log("Filter:" + json);
-            return json;
-        })
-        .then(content => props.onSubmit(content))
+            .then(res => res.json())
+            .then(json => {
+                console.log("Filter:" + json);
+                return json;
+            })
+            .then(content => props.onSubmit(content))
     }
 
     return (
         <form className="filter_menu" onSubmit={form_submit}>
             <div className="row">
-                
+
             </div>
 
             <input type="text" placeholder="Enter your search!" value={searchTerm} onChange={(e) => {

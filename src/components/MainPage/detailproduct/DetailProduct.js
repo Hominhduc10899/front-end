@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import DataLoader from "../products/data";
+import { Chart } from "react-charts";
 
 function DetailProduct(props) {
     const [product, setProduct] = useState(null);
     const [id, setId] = useState(props.match.params.id);
-
+    const [dataChart, setDataChart] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:9000/product/get/" + id)
@@ -15,6 +16,18 @@ function DetailProduct(props) {
                 console.log(json);
                 console.log(json.moreLikeThisProducts.length)
                 setProduct(json);
+
+                const data = [];
+                json.histories.map(item => {
+                    data.push([item.date.substring(0, 10), item.price]);
+                });
+                const newDataChart = [
+                    {
+                        label: "Product",
+                        data: data
+                    },
+                ];
+                setDataChart(newDataChart);
             })
             .catch(err => {
                 console.log(err)
@@ -29,6 +42,14 @@ function DetailProduct(props) {
         slidesToShow: 1,
         slidesToScroll: 1
     };
+
+    const axes = React.useMemo(
+        () => [
+            { primary: true, type: "ordinal", position: "bottom" },
+            { type: "linear", position: "left" },
+        ],
+        []
+    );
 
     // setProduct(products.find(x => x.id === props.match.params.id));
     return (
@@ -52,13 +73,13 @@ function DetailProduct(props) {
                                 <p>Price: {product.currentPrice} đ</p>
                                 {
                                     (<div>
-                                        <p>Category:  
-                                            <Link to={"/sub-category/" +  product.categories[product.categories.length - 1].shopeeCategoryID} onClick={() => window.open("/sub-category/" + product.categories[product.categories.length - 1].shopeeCategoryID, "_self")}>{ product.categories[product.categories.length - 1].name}</Link>
+                                        <p>Category:
+                                            <Link to={"/sub-category/" + product.categories[product.categories.length - 1].shopeeCategoryID} onClick={() => window.open("/sub-category/" + product.categories[product.categories.length - 1].shopeeCategoryID, "_self")}>{product.categories[product.categories.length - 1].name}</Link>
                                         </p>
                                     </div>)
                                 }
                                 <p>Rating: {Math.round(product.rating)} &#9733; </p>
-                                
+
                                 <div className="row_btn">
                                     <a id="btn_direct" href={product.url} className="cart">
                                         Direct Link
@@ -88,6 +109,16 @@ function DetailProduct(props) {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+
+                        <div
+                            style={{
+                                width: "900px",
+                                height: "500px",
+                            }}
+                        >
+                            <h2 style={{ textAlign: "center" }}>Historical Price Chart</h2>
+                            <Chart data={dataChart} axes={axes} tooltip />
                         </div>
                     </>
                 )}
